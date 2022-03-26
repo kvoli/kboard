@@ -30,7 +30,7 @@ qmk compile -kb lily58 -km kboard
 4. flash your board
 
 ```
-qmk flash  -kb lily58  -km kboard -nl dfu
+qmk flash  -kb lily58  -km kboard -bl dfu
 ```
 
 5. short the board on `GND` and `RST`
