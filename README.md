@@ -1,6 +1,8 @@
 # kboard
 
-QMK keymap for Lily58
+QMK keymap for Lily58. 
+
+Highly unstable, likely changing significantly.
 
 ## init
 
