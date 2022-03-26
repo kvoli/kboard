@@ -1,5 +1,23 @@
 #include QMK_KEYBOARD_H
 
+#define ANIM_INVERT false
+#define ANIM_RENDER_WPM true
+#define FAST_TYPE_WPM 45 //Switch to fast animation when over words per minute
+
+#ifdef OLED_DRIVER_ENABLE
+    #include "demon.c"
+#endif
+
+// -- Probably some other stuff and then --
+
+#ifdef OLED_DRIVER_ENABLE
+void oled_task_user(void) {
+    if (!is_keyboard_master()) {
+        oled_render_anim();
+    }
+}
+#endif
+
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
@@ -147,3 +165,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+#ifdef OLED_DRIVER_ENABLE
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+  if (!is_master) {
+    return OLED_ROTATION_180;
+  }
+  return rotation;
+}
+#endif
